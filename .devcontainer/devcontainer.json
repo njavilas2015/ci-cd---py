@@ -1,0 +1,32 @@
+{
+	"name": "Backend Django",
+	"build": {
+		"args": {
+			"ARG_WORKDIR": "/workspaces"
+		}
+	},
+	"dockerFile": "Dockerfile",
+	"context": "..",
+	"runArgs": [
+		"--network",
+		"host",
+		"--env-file",
+		".devcontainer/.env"
+	],
+	"postCreateCommand": "echo 'Welcome!! Ya puedes trabajar'",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash",
+				"python.defaultInterpreterPath": "/workspaces/venv/bin/python"
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.black-formatter",
+				"streetsidesoftware.code-spell-checker"
+			]
+		}
+	},
+	"remoteUser": "vscode"
+}

@@ -9,7 +9,7 @@ ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 RUN adduser -D -s /bin/bash vscode
 
 USER root
-RUN apk add --no-cache curl wget bash
+RUN apk add --no-cache curl wget bash make git
 
 USER vscode
 

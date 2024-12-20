@@ -3,3 +3,6 @@ install: create-env
 
 create-env:
 	python3 -m venv venv
+
+lint:
+	black .

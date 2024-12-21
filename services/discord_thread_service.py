@@ -50,6 +50,7 @@ class DiscordThreadService:
             return
 
         thread = await self.discord_repository.create_thread(interaction.channel, name)
+
         users = await self.discord_repository.get_members_by_ids(
             interaction.guild, member_ids
         )

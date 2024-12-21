@@ -1,3 +1,7 @@
+"""
+Start code main.py
+"""
+
 import os
 import discord
 from discord.ext import commands
@@ -19,13 +23,16 @@ from repositories.cloudflare_repository import CloudflareRepository
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-discord_adapter = DiscordAdapter()
-discord_repository = DiscordRepository(discord_adapter)
-thread_service = DiscordThreadService(discord_repository)
+discord_adapter: DiscordAdapter = DiscordAdapter()
+discord_repository: DiscordRepository = DiscordRepository(discord_adapter)
+thread_service: DiscordThreadService = DiscordThreadService(discord_repository)
 
 
 @bot.event
 async def on_ready():
+    """
+    This function synchronizes the commands at startup
+    """
     print(f"Connected as {bot.user}")
     try:
         synced = await bot.tree.sync()
@@ -36,6 +43,7 @@ async def on_ready():
 
 @bot.tree.command(name="testing", description="Request fixture test")
 async def testing(interaction: discord.Interaction):
+    """Command /testing"""
     await thread_service.testing(interaction)
 
 
@@ -49,6 +57,7 @@ async def create_thread(interaction: discord.Interaction, id: str, members: str)
 
 bot.run(os.getenv("TOKEN_DISCORD"))
 
+"""
 
 if __name__ == "__main__":
 
@@ -92,3 +101,5 @@ if __name__ == "__main__":
             print(f"- {task['name']} (ID: {task['id']})")
     else:
         print("No se encontraron tareas o hubo un error.")
+
+"""
